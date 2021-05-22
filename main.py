@@ -1,7 +1,7 @@
 import random, string
 from flask import Flask, render_template, request
 from flask_apscheduler import APScheduler
-    
+from scrap import loop_for_company
 app = Flask(  # Create a flask app
 	__name__,
 	template_folder='templates',  # Name of html file folder
@@ -16,20 +16,17 @@ scheduler.init_app(app)
 
 
 # interval example
-@scheduler.task('interval', id='do_job_1', seconds=30, misfire_grace_time=900)
+@scheduler.task('interval', id='job_1', seconds=60*60*24, misfire_grace_time=900)
 def job1():
-    print('Job 1 executed')
+    loop_for_company("datacm")
 
-
-# cron examples
-@scheduler.task('cron', id='do_job_2', minute='*')
+@scheduler.task('interval', id='job_2', seconds=60*60*24, misfire_grace_time=900)
 def job2():
-    print('Job 2 executed')
+    loop_for_company('arht-media-inc-')
 
-
-@scheduler.task('cron', id='do_job_3', week='*', day_of_week='sun')
+@scheduler.task('interval', id='job_3', seconds=60*60*24, misfire_grace_time=900)
 def job3():
-    print('Job 3 executed')
+    loop_for_company('peakfintech')
 
 scheduler.start()
   

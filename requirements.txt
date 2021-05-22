@@ -1,2 +1,6 @@
 flask
 Flask-APScheduler
+linkedin-api~=2.0.0a
+dateparser
+requests
+beautifulsoup4==4.8.2
