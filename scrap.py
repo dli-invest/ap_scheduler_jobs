@@ -7,13 +7,14 @@ import json
 import os
 import time
 import sys
+from config import HOUR_DELAY
 # Authenticate using any Linkedin account credentials
 email = os.environ.get("LINKEDIN_EMAIL")
 password = os.environ.get("LINKEDIN_PASSWORD")
 webhook = os.environ.get("DISCORD_WEBHOOK")
 if email is None or password is None:
     print("SOME MESSAGE GOES HERE")
-    exit("Failed to get app credentials")
+    # exit("Failed to get app credentials")
 api = Linkedin(email, password)
 
 
@@ -44,7 +45,7 @@ def clean(str):
     else:
         return None
 
-print("LOOKING FOR UPDATES")
+# print("LOOKING FOR UPDATES")
 
 def loop_for_company(company: str):
     print("CURRENT COMPANY")
@@ -60,7 +61,7 @@ def loop_for_company(company: str):
 
             relativeDate = dateparser.parse(cleanText)
             now = datetime.now()
-            if now-timedelta(hours=24) <= relativeDate <= now:
+            if now-timedelta(hours=HOUR_DELAY) <= relativeDate <= now:
                 actions = update["value"]["com.linkedin.voyager.feed.render.UpdateV2"]["updateMetadata"]["actions"]
                 url = "https://www.linkedin.com/company/peakfintech/"
                 for action in actions:
