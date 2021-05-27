@@ -79,5 +79,3 @@ def loop_for_company(company: str):
                 break
         except Exception as e:
             print(e)
-
-companies = ['datacm', 'arht-media-inc-', 'peakfintech']
