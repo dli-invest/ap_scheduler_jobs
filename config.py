@@ -1,4 +1,4 @@
-HOUR_DELAY = 3
+HOUR_DELAY = 24
 
 COMPANIES = [
     'datacm', 'arht-media-inc-', 'peakfintech'

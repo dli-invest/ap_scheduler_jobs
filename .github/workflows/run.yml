@@ -29,16 +29,8 @@ jobs:
       - name: Install
         run: pip install -r requirements.txt
 
-      - name: Run Script for news and halts
+      - name: Run Script to call external api
         run: python call_api.py
-      
-      - name: Run Script for all news
-        run: python all_stock_news.py
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: csvs
-          path: full_news.csv
 
       - name: Commit files
         run: |
