@@ -32,18 +32,6 @@ jobs:
       - name: Run Script to call external api
         run: python call_api.py
 
-      - name: Commit files
-        run: |
-          git add *.csv
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -m "Add changes" -a
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
