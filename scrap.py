@@ -47,7 +47,7 @@ def clean(str):
 
 # print("LOOKING FOR UPDATES")
 
-def loop_for_company(company: str):
+def loop_for_company(company: str, hours: int = 24):
     print("CURRENT COMPANY")
     print(company)
     updates = api.get_company_updates(company, None, 10)
@@ -61,9 +61,9 @@ def loop_for_company(company: str):
 
             relativeDate = dateparser.parse(cleanText)
             now = datetime.now()
-            if now-timedelta(hours=HOUR_DELAY) <= relativeDate <= now:
+            if now-timedelta(hours=int(hours)) <= relativeDate <= now:
                 actions = update["value"]["com.linkedin.voyager.feed.render.UpdateV2"]["updateMetadata"]["actions"]
-                url = "https://www.linkedin.com/company/peakfintech/"
+                url = f"https://www.linkedin.com/company/{company}/"
                 for action in actions:
                     if action.get('url') != None:
                         url = action.get('url')

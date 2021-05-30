@@ -29,6 +29,7 @@ def page_2():
 
 @app.route('/company/<name>')
 def get_product(name):
+  hours = request.args.get('hours', 24)
   loop_for_company(name)
   return "success"
 
